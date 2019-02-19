@@ -1,0 +1,36 @@
+.container {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.container h1 {
+  margin-bottom: 3%;
+}
+
+.leagues {
+  font-size: 20px;
+  line-height: 1.8;
+}
+
+@media only screen and (max-width: 600px) {
+ .leagues {
+   font-size: 20px;
+   line-height: 1.8;
+   text-align: center;
+ }
+}
+
+.detail {
+  padding: 5%;
+  padding-top: 1%;
+  background-color: #f2f2f2;
+}
+
+.detail a {
+  margin-top: 2%;
+}
+
+.league-info {
+  font-size: 24px;
+  text-align: center;
+}
