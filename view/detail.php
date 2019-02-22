@@ -1,24 +1,7 @@
-<?php
-
-include_once "partials/header.php";
-require_once "classes/JSONdb.php";
-require_once "classes/Ago.php";
-
-$db = new JSONdb;
-$db->setFile(__DIR__ . '/db.json');
-$data = $db->getData();
-
-$data = array_reverse($data);
-
-$detail = $data[$_GET['id']];
-
-if(empty($detail)) { header('Location: index.php'); die(); }
-
-?>
-      <h1>Hacettepe University OSM Society</h1>
+    <h1>Hacettepe University OSM Society</h1>
       <div class="detail">
 
-        <a href="index.php" class="btn btn-secondary">Back to Homepage</a><br><br>
+        <a href="?op=list" class="btn btn-secondary">Back to Homepage</a><br><br>
 
         <h3><?=$detail['username'];?>'s league</h3>
         <hr>
@@ -36,4 +19,3 @@ if(empty($detail)) { header('Location: index.php'); die(); }
           <a href="<?=$detail['link'];?>" target="_blank" rel="noopener noreferrer" class="btn btn-success btn-block">Join</a>
         </div>
       </div>
-<?php include_once "partials/footer.php"; ?>

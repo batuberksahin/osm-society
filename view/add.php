@@ -1,34 +1,28 @@
-<?php
-
-include_once "partials/header.php";
-require_once "classes/JSONdb.php";
-
-?>
-      <h1>Hacettepe University OSM Society</h1>
+<h1>Hacettepe University OSM Society</h1>
       <div class="detail">
 
-        <a href="index.php" class="btn btn-secondary">Back to Homepage</a><br><br>
+        <a href="?op=list" class="btn btn-secondary">Back to Homepage</a><br><br>
 
-        <?php
-        if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if(empty($_POST['username']) || empty($_POST['league']) || empty($_POST['description']) || empty($_POST['link'])) { ?>
-          <div class="alert alert-danger">
-            <strong>Warning!</strong> Please fill all fields.
-          </div>
-        <?php }else{
-          $db = new JSONdb;
-          $db->setFile(__DIR__ . "/db.json");
-          $db->saveData([
-            "link" => htmlspecialchars($_POST['link']),
-            "username" => htmlspecialchars($_POST['username']),
-            "league" => htmlspecialchars($_POST['league']),
-            "date" => date("Y-m-d H:i:s"),
-            "description" => htmlspecialchars($_POST['description'])
-          ]);
-          header('Location: index.php'); die();
-        } } ?>
+        <?php if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if(empty($_POST['username']) || empty($_POST['league']) || empty($_POST['description']) || empty($_POST['link'])) { ?>
+                <div class="alert alert-danger">
+                <strong>Warning!</strong> Please fill all fields.
+                </div>
+            <?php }else{
+                $db = new JSONdb;
+                $db->setFile(__DIR__ . "/../db.json");
+                $db->saveData([
+                "link" => htmlspecialchars($_POST['link']),
+                "username" => htmlspecialchars($_POST['username']),
+                "league" => htmlspecialchars($_POST['league']),
+                "date" => date("Y-m-d H:i:s"),
+                "description" => htmlspecialchars($_POST['description'])
+                ]);
+                header('Location: .'); die();
+            } 
+        } ?>
 
-        <form action="add.php" method="post">
+        <form action="?op=add" method="post">
           <div class="form-group">
             <label for="name">Your Name</label>
             <input type="text" class="form-control" id="name" name="username">
@@ -68,8 +62,3 @@ require_once "classes/JSONdb.php";
           <input type="submit" value="Add" class="btn btn-info btn-block">
         </form>
       </div>
-<?php
-
-include_once "partials/footer.php";
-
-?>
